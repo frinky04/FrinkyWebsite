@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"rel="stylesheet">
+  <title> Math Test</title>
+  <style>
+    /* Dark mode styling */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Chakra Petch', sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    #question {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    #feedback {
+      margin-top: 10px;
+      font-size: 18px;
+      min-height: 24px;
+    }
+    #result {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+    input[type="text"] {
+      font-size: 16px;
+      padding: 5px;
+      width: 120px;
+      text-align: center;
+      background-color: #ffffff00;
+      color: #fff;
+      border: 1px solid #ffffff2c;
+      font-family: 'Chakra Petch', sans-serif;
+      outline: none; /* Disable the selection border */
+    }
+  </style>
+</head>
+<body>
+  <!-- <h1>Math Quiz</h1> -->
+  <div id="quiz-container">
+    <div id="question"></div>
+    <input type="text" id="answerInput" autocomplete="off" autofocus />
+    <div id="feedback"></div>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    // Number of problems in the quiz
+    const NUM_QUESTIONS = 20;
+    
+    let problems = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    // This flag controls whether Enter validates the answer (false) or moves to the next question (true)
+    let answered = false;
+    let startTime, endTime;
+
+    // Function to generate a single random problem
+    function generateProblem() {
+      const operations = ['+', '-', '*'];
+      const op = operations[Math.floor(Math.random() * operations.length)];
+      let a, b, answer;
+      switch(op) {
+        case '+':
+          a = Math.floor(Math.random() * 21); // numbers 0–20
+          b = Math.floor(Math.random() * 21);
+          answer = a + b;
+          break;
+        case '-':
+          a = Math.floor(Math.random() * 21);
+          // Ensure non-negative result
+          b = Math.floor(Math.random() * (a + 1));
+          answer = a - b;
+          break;
+        case '*':
+          a = Math.floor(Math.random() * 11); // numbers 0–10
+          b = Math.floor(Math.random() * 11);
+          answer = a * b;
+          break;
+      }
+      return { a, b, op, answer };
+    }
+
+    // Pre-generate the quiz problems
+    function initProblems() {
+      for (let i = 0; i < NUM_QUESTIONS; i++) {
+        problems.push(generateProblem());
+      }
+    }
+
+    // Display the current problem
+    function showQuestion() {
+      if (currentQuestionIndex >= NUM_QUESTIONS) {
+        endQuiz();
+        return;
+      }
+      const problem = problems[currentQuestionIndex];
+      document.getElementById('question').textContent = `${problem.a} ${problem.op} ${problem.b}`;
+      document.getElementById('answerInput').value = '';
+      document.getElementById('feedback').textContent = '';
+      answered = false;
+      document.getElementById('answerInput').focus();
+    }
+
+    function checkAnswer() {
+      const input = document.getElementById('answerInput');
+      const userAnswer = parseInt(input.value, 10);
+      const problem = problems[currentQuestionIndex];
+      const feedbackDiv = document.getElementById('feedback');
+      
+      if (isNaN(userAnswer)) {
+        feedbackDiv.textContent = `Please enter a valid number.`;
+        return;
+      }
+      
+      if (userAnswer === problem.answer) {
+        feedbackDiv.textContent = `Correct!`;
+        score++;
+      } else {
+        feedbackDiv.textContent = `Wrong! The correct answer was ${problem.answer}.`;
+      }
+      answered = true;
+    }
+
+    function endQuiz() {
+      endTime = new Date();
+      const timeTaken = Math.round((endTime - startTime) / 1000);
+      document.getElementById('quiz-container').style.display = 'none';
+      document.getElementById('result').textContent =
+        `SCORE\n (${score} / ${NUM_QUESTIONS})\n\nTIME (${timeTaken})s`;
+    }
+
+    // Handle the Enter key press
+    document.getElementById('answerInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        // If answer hasn't been checked yet, check it.
+        if (!answered) {
+          checkAnswer();
+        } else {
+          // If already answered, move to the next question.
+          currentQuestionIndex++;
+          showQuestion();
+        }
+      }
+    });
+
+    // Initialize the quiz when the page loads.
+    window.onload = function() {
+      initProblems();
+      startTime = new Date();
+      showQuestion();
+      // Force focus on the input field
+    }
+
+    window.oninput = function() {
+      
+      document.getElementById('answerInput').focus();
+    }
+  </script>
+</body>
+</html>
