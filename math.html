@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"rel="stylesheet">
-  <title> Math Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <title>Math Test</title>
   <style>
     /* Dark mode styling */
     body {
@@ -29,6 +29,12 @@
       font-size: 22px;
       font-weight: bold;
       margin-top: 30px;
+      white-space: pre-line; /* Allow line breaks in the text */
+    }
+    #pastResults {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: left;
     }
     input[type="text"] {
       font-size: 16px;
@@ -50,10 +56,8 @@
     <input type="text" id="answerInput" autocomplete="off" autofocus />
     <div id="feedback"></div>
   </div>
-   <div id="result"></div>
-  <img src="Images/frog.png" alt="frog" width="100" height="100" />
-
-
+  <div id="result"></div>
+  <div id="pastResults"></div>
   <script>
     // Number of problems in the quiz
     const NUM_QUESTIONS = 20;
@@ -112,6 +116,7 @@
       document.getElementById('answerInput').focus();
     }
 
+    // Check the answer entered by the user
     function checkAnswer() {
       const input = document.getElementById('answerInput');
       const userAnswer = parseInt(input.value, 10);
@@ -132,12 +137,50 @@
       answered = true;
     }
 
+    // End the quiz, display results, and save the score in localStorage
     function endQuiz() {
       endTime = new Date();
       const timeTaken = Math.round((endTime - startTime) / 1000);
+
+      // Save result in localStorage
+      const currentResult = {
+        score: score,
+        total: NUM_QUESTIONS,
+        time: timeTaken,
+        date: new Date().toLocaleString()
+      };
+
+      // Retrieve past scores (if any) from localStorage
+      let results = JSON.parse(localStorage.getItem('mathQuizResults')) || [];
+      results.push(currentResult);
+
+      // Keep only the last 5 scores
+      if (results.length > 5) {
+        results.shift();
+      }
+      localStorage.setItem('mathQuizResults', JSON.stringify(results));
+
       document.getElementById('quiz-container').style.display = 'none';
       document.getElementById('result').textContent =
-        `SCORE\n (${score} / ${NUM_QUESTIONS})\n\nTIME (${timeTaken})s`;
+        `SCORE\n(${score} / ${NUM_QUESTIONS})\n\nTIME: ${timeTaken}s`;
+
+      // Display the saved past scores
+      displayPastScores();
+    }
+
+    // Function to display the last 5 scores from localStorage
+    function displayPastScores() {
+      const pastScoresDiv = document.getElementById('pastResults');
+      let results = JSON.parse(localStorage.getItem('mathQuizResults')) || [];
+      if (results.length === 0) {
+        pastScoresDiv.textContent = 'No past scores yet.';
+      } else {
+        let html = '<h3>Last 5 Scores</h3>';
+        results.forEach((result, index) => {
+          html += `<p>${index + 1}. Score: ${result.score} / ${result.total}, Time: ${result.time} sec, Date: ${result.date}</p>`;
+        });
+        pastScoresDiv.innerHTML = html;
+      }
     }
 
     // Handle the Enter key press
@@ -160,11 +203,10 @@
       initProblems();
       startTime = new Date();
       showQuestion();
-      // Force focus on the input field
     }
 
+    // Keep focus on the input field at all times.
     window.oninput = function() {
-      
       document.getElementById('answerInput').focus();
     }
   </script>
