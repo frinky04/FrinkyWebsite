@@ -81,7 +81,7 @@
     function copyResult() {
       resultText = document.getElementById('result').textContent;
       // add link to the result
-      resultText += "\nPlay: https://www.frinky.games/math";
+      resultText += "\n\nPlay: https://www.frinky.games/math";
       navigator.clipboard.writeText(resultText).then(() => {
         alert("Result copied to clipboard!");
       }).catch(err => {
