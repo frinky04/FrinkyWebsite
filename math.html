@@ -79,7 +79,9 @@
     
     // Copy the Wordle-style result to clipboard
     function copyResult() {
-      const resultText = document.getElementById('result').textContent;
+      resultText = document.getElementById('result').textContent;
+      // add link to the result
+      resultText += "\nPlay: https://www.frinky.games/math";
       navigator.clipboard.writeText(resultText).then(() => {
         alert("Result copied to clipboard!");
       }).catch(err => {
