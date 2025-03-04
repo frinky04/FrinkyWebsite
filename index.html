@@ -1,196 +1,224 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>frinky's games</title>
-    <meta content="frinky's games" property="og:title" />
-    <meta content="about me" property="og:description" />
-    <meta content="#ce0202" data-react-helmet="true" name="theme-color" />
-    <link rel="icon" href="Images/frog.png" type="image/png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <title>frinky's games</title>
+  <meta content="frinky's games" property="og:title" />
+  <meta content="about me" property="og:description" />
+  <meta content="#ce0202" data-react-helmet="true" name="theme-color" />
+  <link rel="icon" href="Images/frog.png" type="image/png" />
 
-    <!-- Include particles.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Code:wght@300..700&display=swap"
+    rel="stylesheet">
 
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
+  <!-- Include particles.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-      body {
-        font-family: "Fira Code", sans-serif;
-        color: #d0d0d0;
-        background-color: #0f0f0f;
-        padding: 15px;
-        line-height: 1.5;
-        text-align: center;
-        margin: 0;
-        overflow-x: hidden;
-        position: relative;
-      }
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-      #fade-in {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        background-color: #0f0f0f;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
+    body {
+      font-family: "Fira Code", sans-serif;
+      color: #d0d0d0;
+      background-color: #0f0f0f;
+      padding: 15px;
+      line-height: 1.5;
+      text-align: center;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-      /* Fade-in effect styles */
+    #fade-in {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: #0f0f0f;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* Fade-in effect styles */
+    h1,
+    h2,
+    p,
+    img,
+    a {
+      opacity: 0;
+      /* Start invisible */
+    }
+
+
+
+    a {
+      font-weight: 400;
+      color: rgb(128, 128, 128);
+      text-decoration: none;
+      transition: color 0.5s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    .fade-in {
+      opacity: 1;
+      transition: opacity 1s linear, transform 1s linear;
+    }
+
+    h1 {
+      font-size: 64px;
+      font-weight: 600;
+      margin: 0px;
+      line-height: 1;
+      padding: 15px;
+      text-align: center;
+      font-family: "Chakra Petch", sans-serif;
+      color: #fff;
+      /* Default Prefix: 02 */
+    }
+
+    h2 {
+      font-size: 12;
+      font-weight: 600;
+      line-height: 1;
+      margin: 0px;
+      padding: 0;
+      text-align: center;
+      font-family: "Chakra Petch", sans-serif;
+      color: #fff;
+      /* Default Prefix: 02 */
+
+    }
+
+    p {
+      color: #d0d0d0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 0.5;
+    }
+
+    /* Accessibility: Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+
       h1,
       h2,
       p,
-      img,
       a {
-        opacity: 0; /* Start invisible */
-      }
-
-
-
-      a {
-        font-weight: 400;
-        color: rgb(128, 128, 128);
-        text-decoration: none;
-        transition: color 0.5s;
-      }
-      
-      a:hover {
-        color: #fff;
+        opacity: 1;
+        transform: none;
       }
 
       .fade-in {
-        opacity: 1;
-        transition: opacity 1s linear, transform 1s linear;
+        transition: none;
       }
+    }
+  </style>
+</head>
 
-      h1 {
-        font-size: 64px;
-        font-weight: 600;
-        margin: 0px;
-        line-height: 1;
-        padding: 15px;
-        text-align: center;
-        font-family: "Chakra Petch", sans-serif;
-        color: #fff;         /* Default Prefix: 02 */
+<body>
+  <!-- Particle Background -->
+  <div id="fade-in"></div>
+
+  <h1>frinky</h1>
+  <img src="Images/frog.png" alt="frog" width="100" height="100" />
+  <br>
+  <br>
+  <h2>about me</about>
+  </h2>
+  <p>finn rawlings</p>
+  <p>he/him</p>
+  <p>20</p>
+  <p>australia</p>
+
+  <br>
+
+
+  <h2>game dev</h2>
+  <p>programmer / ue generalist</p>
+  <p>replication, animation, gameplay, ui, ai</p>
+  <p>c#, c++, java, python, lua</p>
+  <p><a href="https://store.steampowered.com/app/2124100/Transience/">transience</a> @ killswitch games (fulltime)</p>
+  <br>
+
+  <h2>my games</h2>
+  <p>
+    <a href="https://store.steampowered.com/app/3264590/bang_shoot/">bang shoot. (2025)</a>
+  </p>
+  <p>
+    <a href="https://store.steampowered.com/app/2747780/Dishwashing_Simulator/">dishwashing simulator (2024)</a>
+  </p>
+  <p>
+    <a href="https://frinkygames.itch.io/infinite-golf">infinite golf (2024)</a>
+  </p>
+  <p>
+    <a href="https://store.steampowered.com/app/1760020/GROUNDUNBOUND/">ground-unbound (2021)</a>
+  </p>
+  <p>
+    <a href="https://store.steampowered.com/app/1230410/Chaos/">chaos (2020)</a>
+  </p>
+  <br>
+
+  <h2>socials</h2>
+  <p>@frinky on discord</p>
+  <p><a href="https://www.youtube.com/@frinky">youtube</a></p>
+  <p><a href="https://www.twitter.com/frinky13">twitter</a></p>
+  <p><a href="https://www.github.com/frinky04">github</a></p>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="image-grid">
+    <img src="Images/Screenshots/1.jpg" alt="Game screenshot 1" class="grid-image"/>
+    <img src="Images/Screenshots/2.jpg" alt="Game screenshot 2" class="grid-image"/>
+    <img src="Images/Screenshots/3.jpg" alt="Game screenshot 3" class="grid-image"/>
+    <img src="Images/Screenshots/4.jpg" alt="Game screenshot 4" class="grid-image"/>
+  </div>
+
+  <style>
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(35%, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-image {
+      width: 100%;
+      height: auto;
+      border-radius: 0px;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .image-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
+    }
+  </style>
 
-      h2 {
-        font-size: 12;
-        font-weight: 600;
-        line-height: 1;
-        margin: 0px;
-        padding: 0;
-        text-align: center;
-        font-family: "Chakra Petch", sans-serif;
-        color: #fff;         /* Default Prefix: 02 */
-
-      }
-
-      p {
-        color: #d0d0d0;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 0.5;
-      }
-
-      /* Accessibility: Reduce motion for users who prefer it */
-      @media (prefers-reduced-motion: reduce) {
-        h1,
-        h2,
-        p,
-        a {
-          opacity: 1;
-          transform: none;
-        }
-
-        .fade-in {
-          transition: none;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Particle Background -->
-    <div id="fade-in"></div>
-
-    <h1>frinky</h1>
-    <img src="Images/frog.png" alt="frog" width="100" height="100" />
-    <br>
-    <br>
-    <h2>about me</about></h2>
-    <p>finn rawlings</p>
-    <p>he/him</p>
-    <p>20</p>
-    <p>australia</p>
-    
-    <br>
-
-
-    <h2>game dev</h2>
-    <p>programmer / ue generalist</p>
-    <p>replication, animation, gameplay, ui, ai</p>
-    <p>c#, c++, java, python, lua</p>
-    <p><a href="https://store.steampowered.com/app/2124100/Transience/">transience</a> @ killswitch games (fulltime)</p>
-    <br>
-
-    <h2>my games</h2>
-    <p>
-      <a
-        href="https://store.steampowered.com/app/3264590/bang_shoot/"
-        >bang shoot. (2025)</a
-      >
-    </p>
-    <p>
-      <a
-        href="https://store.steampowered.com/app/2747780/Dishwashing_Simulator/"
-        >dishwashing simulator (2024)</a
-      >
-    </p>
-    <p>
-      <a
-        href="https://frinkygames.itch.io/infinite-golf"
-        >infinite golf (2024)</a
-      >
-    </p>
-    <p>
-      <a href="https://store.steampowered.com/app/1760020/GROUNDUNBOUND/"
-        >ground-unbound (2021)</a
-      >
-    </p>
-    <p>
-      <a href="https://store.steampowered.com/app/1230410/Chaos/"
-        >chaos (2020)</a
-      >
-    </p>
-    <br>
-
-
-    <h2>socials</h2>
-    <p>@frinky on discord</p>
-    <p><a href="https://www.youtube.com/@frinky">youtube</a></p>
-    <p><a href="https://www.twitter.com/frinky13">twitter</a></p>
-    <p><a href="https://www.github.com/frinky04">github</a></p>
-
-
-    <!-- Initialize fade-in effect -->
-    <script>
-    
-      // Fade-in effect
-      document.addEventListener("DOMContentLoaded", function () {
-        const elements = document.querySelectorAll("h1, h2, p, a, img");
-        elements.forEach((el, index) => {
-          setTimeout(() => {
-            el.classList.add("fade-in");
-          }, index * 25); // Delay between elements (in milliseconds)
-        });
+  <!-- Initialize fade-in effect -->
+  <script>
+    // Fade-in effect
+    document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll("h1, h2, p, a, img");
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add("fade-in");
+        }, index * 25); // Delay between elements (in milliseconds)
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>
