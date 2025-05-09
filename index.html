@@ -105,10 +105,10 @@
     }
 
     h1 {
-      font-size: 96px;
+      font-size: 8vmin; /* Responsive font size based on viewport's smaller dimension */
       font-weight: 600;
       margin: 0px;
-      line-height: 1;
+      line-height: 1.0; /* Adjusted for better spacing */
       padding: 15px;
       text-align: center;
       font-family: "Chakra Petch", sans-serif;
@@ -117,10 +117,11 @@
     }
 
     h2 {
-      font-size: 12;
+      /* font-size: 12; */ /* Invalid: no unit */
+      font-size: 1.75rem; /* Approx 28px, adjust as needed */
       font-weight: 600;
-      line-height: 1;
-      margin: 0px;
+      line-height: 1.0; /* Adjusted for better spacing */
+      margin: 20px 0px 10px; /* Add some vertical margin */
       padding: 0;
       text-align: center;
       font-family: "Chakra Petch", sans-serif;
@@ -129,10 +130,11 @@
     }
 
     p {
-      color: #FFFFFF;
-      font-size: 16px;
+      color: #FFFFFF; /* Changed to white */
+      font-size: 1rem; /* Approx 16px, standard paragraph size */
       font-weight: 400;
-      line-height: 0.5;
+      /* line-height: 0.5; */ /* This was causing major squashing */
+      line-height: 0.5; /* Standard comfortable line height */
     }
 
     /* Accessibility: Reduce motion for users who prefer it */
