@@ -17,29 +17,62 @@
 
   <!-- Include particles.js library -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link rel="stylesheet" href="emergence.css">
 
   <style>
     html {
       scroll-behavior: smooth;
+      height: 100%; /* Fill viewport height */
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent html element from scrolling */
     }
 
     body {
       font-family: "Fira Code", sans-serif;
-      color: #d0d0d0;
-      background-color: #0f0f0f;
-      padding: 15px;
+      color: #FFFFFF;
+      background-color: transparent;
+      /* padding: 15px; */ /* Moved to #content-wrapper */
       line-height: 1.5;
-      text-align: center;
       margin: 0;
-      overflow-x: hidden;
+      /* overflow-x: hidden; */ /* Covered by overflow: hidden on html/body */
       position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* min-height: 100vh; */ /* Replaced by height: 100% */
+      height: 100%; /* Fill viewport height */
+      overflow: hidden; /* Prevent body from scrolling */
+    }
+
+    #content-wrapper {
+      text-align: center;
+      width: 100%;
+      max-width: 1200px; /* Optional: constrain max width */
+      overflow-y: auto; /* Allow vertical scroll if content overflows */
+      max-height: 100%; /* Don't grow beyond parent */
+      padding: 15px; /* Moved from body */
+      box-sizing: border-box; /* Include padding in height/width calculation */
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #content-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    #content-wrapper {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
     }
 
     #fade-in {
       position: fixed;
       width: 100%;
       height: 100%;
-      background-color: #0f0f0f;
+      background-color: transparent;
       top: 0;
       left: 0;
       z-index: -1;
@@ -55,11 +88,9 @@
       /* Start invisible */
     }
 
-
-
     a {
       font-weight: 400;
-      color: rgb(128, 128, 128);
+      color: #CCCCCC;
       text-decoration: none;
       transition: color 0.5s;
     }
@@ -74,7 +105,7 @@
     }
 
     h1 {
-      font-size: 64px;
+      font-size: 96px;
       font-weight: 600;
       margin: 0px;
       line-height: 1;
@@ -95,11 +126,10 @@
       font-family: "Chakra Petch", sans-serif;
       color: #fff;
       /* Default Prefix: 02 */
-
     }
 
     p {
-      color: #d0d0d0;
+      color: #FFFFFF;
       font-size: 16px;
       font-weight: 400;
       line-height: 0.5;
@@ -107,7 +137,6 @@
 
     /* Accessibility: Reduce motion for users who prefer it */
     @media (prefers-reduced-motion: reduce) {
-
       h1,
       h2,
       p,
@@ -124,54 +153,55 @@
 </head>
 
 <body>
-  <!-- Particle Background -->
-  <div id="fade-in"></div>
+  <canvas id="gameCanvas"></canvas>
+  <main id="content-wrapper">
+    <!-- Particle Background -->
+    <div id="fade-in"></div>
 
-  <h1>frinky</h1>
-  <img src="Images/frog.png" alt="frog" width="100" height="100" />
-  <br>
-  <br>
-  <h2>about me</about>
-  </h2>
-  <p>finn rawlings</p>
-  <p>he/him</p>
-  <p>20</p>
-  <p>australia</p>
+    <h1>frinky</h1>
+    <br>
+    <h2>about me</about>
+    </h2>
+    <p>finn rawlings</p>
+    <p>he/him</p>
+    <p>20</p>
+    <p>australia</p>
 
-  <br>
+    <br>
 
 
-  <h2>game dev</h2>
-  <p>programmer / ue generalist</p>
-  <p>replication, animation, gameplay, ui, ai</p>
-  <p>c#, c++, java, python, lua</p>
-  <p><a href="https://store.steampowered.com/app/2124100/Transience/">transience</a> @ killswitch games (fulltime)</p>
-  <br>
+    <h2>game dev</h2>
+    <p>programmer / ue generalist</p>
+    <p>replication, animation, gameplay, ui, ai</p>
+    <p>c#, c++, java, python, lua</p>
+    <p><a href="https://store.steampowered.com/app/2124100/Transience/">transience</a> @ killswitch games (fulltime)</p>
+    <br>
 
-  <h2>my games</h2>
-  <p>
-    <a href="https://store.steampowered.com/app/3264590/bang_shoot/">bang shoot. (2025)</a>
-  </p>
-  <p>
-    <a href="https://store.steampowered.com/app/2747780/Dishwashing_Simulator/">dishwashing simulator (2024)</a>
-  </p>
-  <p>
-    <a href="https://frinkygames.itch.io/infinite-golf">infinite golf (2024)</a>
-  </p>
-  <p>
-    <a href="https://store.steampowered.com/app/1760020/GROUNDUNBOUND/">ground-unbound (2021)</a>
-  </p>
-  <p>
-    <a href="https://store.steampowered.com/app/1230410/Chaos/">chaos (2020)</a>
-  </p>
-  <br>
+    <h2>my games</h2>
+    <p>
+      <a href="https://store.steampowered.com/app/3264590/bang_shoot/">bang shoot. (2025)</a>
+    </p>
+    <p>
+      <a href="https://store.steampowered.com/app/2747780/Dishwashing_Simulator/">dishwashing simulator (2024)</a>
+    </p>
+    <p>
+      <a href="https://frinkygames.itch.io/infinite-golf">infinite golf (2024)</a>
+    </p>
+    <p>
+      <a href="https://store.steampowered.com/app/1760020/GROUNDUNBOUND/">ground-unbound (2021)</a>
+    </p>
+    <p>
+      <a href="https://store.steampowered.com/app/1230410/Chaos/">chaos (2020)</a>
+    </p>
+    <br>
 
-  <h2>socials</h2>
-  <p>@frinky on discord</p>
-  <p><a href="https://www.youtube.com/@frinky">youtube</a></p>
-  <p><a href="https://www.twitter.com/frinky13">twitter</a></p>
-  <p><a href="https://www.github.com/frinky04">github</a></p>
+    <h2>socials</h2>
+    <p>@frinky on discord</p>
+    <p><a href="https://www.youtube.com/@frinky">youtube</a></p>
+    <p><a href="https://www.twitter.com/frinky13">twitter</a></p>
+    <p><a href="https://www.github.com/frinky04">github</a></p>
 
+  </main> <!-- end of #content-wrapper -->
 
   <style>
     .image-grid {
@@ -209,6 +239,7 @@
       });
     });
   </script>
+  <script src="emergence.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    /* background-color: #000000; */ /* Will be handled by canvas */
+    color: #09ff00; /* This will be the color for the cells */
+    /* display: flex; */ /* Remove flex properties */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 100vh; */
+    /* overflow: hidden; */ /* Removed to allow scrolling on index.html */
+}
+
+canvas#gameCanvas {
+    border: none; /* No border needed for background */
+    /* New styles for background canvas */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* Behind fade-in, which is -1 */
+    background-color: #000000; /* Canvas background color */
+} 
