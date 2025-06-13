@@ -4,9 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <title>frinky's games</title>
-  <meta content="frinky's games" property="og:title" />
-  <meta content="about me" property="og:description" />
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta content="frinky.games" property="og:title" />
   <meta content="#ce0202" data-react-helmet="true" name="theme-color" />
+  <meta property="og:image" content="Images/frog.png" />
+  <meta property="og:url" content="https://frinky.games" />
+  <meta property="og:site_name" content="frinky.games" />
+  <meta property="og:type" content="website" />
+
   <link rel="icon" href="Images/frog.png" type="image/png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -165,7 +171,7 @@
     </h2>
     <p>finn rawlings</p>
     <p>he/him</p>
-    <p>20</p>
+    <p id="age"></p>
     <p>australia</p>
 
     <h2>game dev</h2>
@@ -227,6 +233,16 @@
   <script>
     // Fade-in effect
     document.addEventListener("DOMContentLoaded", function () {
+      // Calculate age dynamically
+      const birthDate = new Date(2004, 8, 24); // Month is 0-indexed, so 8 is September
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      document.getElementById("age").textContent = age;
+
       const elements = document.querySelectorAll("h1, h2, p, a, img");
       elements.forEach((el, index) => {
         setTimeout(() => {
